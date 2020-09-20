@@ -1,0 +1,21 @@
+
+body{
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+
+}
+
+div {
+    color: #1F2667;
+    font-family: 'Work Sans', sans-serif
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
