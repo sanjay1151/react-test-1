@@ -29,7 +29,7 @@ const Login = () => {
         console.log(response.data);
         alert(response.data.message);
         localStorage.setItem("auth_key", response.data.auth_token);
-        if (response.data.response_code == 200) {
+        if (response.data.response_code === 200) {
           history.push("/quotes");
         }
       });
