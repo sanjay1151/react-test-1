@@ -85,7 +85,7 @@ const Quotes = () => {
       }
     };
     quote();
-  }, [requestData, history]);
+  }, []);
 
   return isLoading ? (
     <Spinner />
