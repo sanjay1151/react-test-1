@@ -74,9 +74,8 @@ const Quotes = () => {
           )
           .then(function (response) {
             const ak = [];
-            // eslint-disable-next-line array-callback-return
             Object.entries(response.data).map((k) => {
-              k[1].data[0].quotes.suppliers.map((r) => ak.push(r));
+              return k[1].data[0].quotes.suppliers.map((r) => ak.push(r));
             });
             setSuppliers(ak);
             setIsLoading(false);
