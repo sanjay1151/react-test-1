@@ -24,11 +24,7 @@ const Login = () => {
     };
 
     axios
-      .post(" http://13.235.63.108:3000/login", signIn, {
-        headers: {
-          "Content-Security-Policy": "upgrade-insecure-requests",
-        },
-      })
+      .post(" http://13.235.63.108:3000/login", signIn)
       .then(function (response) {
         console.log(response.data);
         alert(response.data.message);

@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
@@ -13,6 +13,7 @@ const SignUp = () => {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [mobile, setMobile] = useState("");
+  let history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +32,11 @@ const SignUp = () => {
       .then(function (response) {
         console.log(response.data);
         alert(response.data.message);
+        if (response.data.response_code === 200) {
+          history.push("/login");
+        }
       });
-
     console.log(signUp);
-
-    console.log(JSON.stringify(signUp));
   };
 
   return (
