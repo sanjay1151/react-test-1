@@ -18,25 +18,31 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const signUp = {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password: pass,
-      password_confirmation: confirmPass,
-      mobile_number: +mobile,
-    };
+    if (pass === confirmPass) {
+      const signUp = {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password: pass,
+        password_confirmation: confirmPass,
+        mobile_number: +mobile,
+      };
 
-    axios
-      .post("http://13.235.63.108:3000/users", signUp)
-      .then(function (response) {
-        console.log(response.data);
-        alert(response.data.message);
-        if (response.data.response_code === 200) {
-          history.push("/login");
-        }
-      });
-    console.log(signUp);
+      axios
+        .post("http://13.235.63.108:3000/users", signUp)
+        .then(function (response) {
+          console.log(response.data);
+          alert(response.data.message);
+          if (response.data.response_code === 200) {
+            history.push("/login");
+          }
+        });
+      console.log(signUp);
+    } else {
+      alert("Passwords do not match");
+      setPass("");
+      setConfirmPass("");
+    }
   };
 
   return (
@@ -128,6 +134,7 @@ const SignUp = () => {
               }}
             >
               <TextField
+                error={pass !== confirmPass}
                 id="Password"
                 type="password"
                 value={pass}
@@ -145,6 +152,7 @@ const SignUp = () => {
               }}
             >
               <TextField
+                error={pass !== confirmPass}
                 id="ConfirmPassword"
                 type="password"
                 value={confirmPass}
