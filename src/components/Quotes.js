@@ -50,8 +50,9 @@ const Quotes = () => {
 
   const [suppliers, setSuppliers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [requestStatus, setRequestStatus] = useState("not-requested");
 
-  const logOut = (e) => {
+  const logOut = () => {
     localStorage.removeItem("auth_key");
     history.push("/login");
   };
@@ -73,18 +74,23 @@ const Quotes = () => {
             }
           )
           .then(function (response) {
-            const ak = [];
+            if (response.data) {
+              setRequestStatus("requested");
+            }
+            const s = [];
             Object.entries(response.data).map((k) => {
-              return k[1].data[0].quotes.suppliers.map((r) => ak.push(r));
+              return k[1].data[0].quotes.suppliers.map((r) => s.push(r));
             });
-            setSuppliers(ak);
+            setSuppliers(s);
             setIsLoading(false);
-            console.log(ak);
+            console.log(s);
           });
       }
     };
-    quote();
-  }, []);
+    if (requestStatus !== "requested") {
+      quote();
+    }
+  }, [requestData, history, requestStatus]);
 
   return isLoading ? (
     <Spinner />
