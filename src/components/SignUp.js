@@ -134,7 +134,7 @@ const SignUp = () => {
               }}
             >
               <TextField
-                error={pass !== confirmPass}
+                error={pass !== confirmPass && confirmPass.length > 0}
                 id="Password"
                 type="password"
                 value={pass}
@@ -152,7 +152,7 @@ const SignUp = () => {
               }}
             >
               <TextField
-                error={pass !== confirmPass}
+                error={pass !== confirmPass && confirmPass.length > 0}
                 id="ConfirmPassword"
                 type="password"
                 value={confirmPass}
@@ -220,7 +220,7 @@ const SignUp = () => {
                     to="/login"
                     style={{ textDecoration: "none", fontSize: "1.25rem" }}
                   >
-                    SIGN UP
+                    SIGN IN
                   </Link>
                 </span>
               </div>

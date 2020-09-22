@@ -11,6 +11,9 @@ import { useHistory } from "react-router-dom";
 import "../index.css";
 
 const Quotes = () => {
+  // const email = localStorage.getItem("email");
+  // const name = localStorage.getItem("name");
+
   const requestData = {
     seller: {
       name: "test",
@@ -20,6 +23,29 @@ const Quotes = () => {
       pick_up_address_id: 1,
     },
     shipments: [
+      {
+        delivery_adress_id: 2,
+        name: "dilip",
+        country_phone_pin: "+91",
+        phone: "8989898989",
+        email: "dilipkumarm219@gmail.com",
+        is_cod: false,
+        quantity: 1,
+        length: "10",
+        breadth: "10",
+        height: "10",
+        weight: "13500",
+        pickup_date: "2020-07-18T04:52:09.000Z",
+        product: "air mac",
+        product_value: 50000,
+        matter_description: "laptop",
+        cargo_type: "general",
+        surface_category: "",
+        unit: "cm",
+        need_insurance: false,
+        is_commercial: false,
+        is_document: false,
+      },
       {
         delivery_adress_id: 2,
         name: "dilip",
@@ -54,6 +80,7 @@ const Quotes = () => {
 
   const logOut = () => {
     localStorage.removeItem("auth_key");
+    localStorage.removeItem("email");
     history.push("/login");
   };
 
@@ -79,7 +106,9 @@ const Quotes = () => {
             }
             const s = [];
             Object.entries(response.data).map((k) => {
-              return k[1].data[0].quotes.suppliers.map((r) => s.push(r));
+              return k[1].data.map((item) =>
+                item.quotes.suppliers.map((r) => s.push(r))
+              );
             });
             setSuppliers(s);
             setIsLoading(false);
@@ -117,6 +146,7 @@ const Quotes = () => {
                   alignItems: "center",
                   width: "300px",
                   margin: "1rem",
+                  minHeight: "300px",
                 }}
               >
                 <CardActionArea>

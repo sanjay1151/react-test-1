@@ -13,6 +13,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   let history = useHistory();
 
+  localStorage.removeItem("auth_key");
+  localStorage.removeItem("email");
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -27,10 +30,13 @@ const Login = () => {
       .post(" http://13.235.63.108:3000/login", signIn)
       .then(function (response) {
         console.log(response.data);
-        alert(response.data.message);
-        localStorage.setItem("auth_key", response.data.auth_token);
+
         if (response.data.response_code === 200) {
-          history.push("/quotes");
+          localStorage.setItem("auth_key", response.data.auth_token);
+          localStorage.setItem("email", response.data.user_info.email);
+          localStorage.setItem("name", response.data.user_info.first_name);
+          alert(response.data.message);
+          history.push("/profile");
         }
       });
   };
