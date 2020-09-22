@@ -36,7 +36,8 @@ const SignUp = () => {
           if (response.data.response_code === 200) {
             history.push("/login");
           }
-        });
+        })
+        .catch((err) => alert(err));
       console.log(signUp);
     } else {
       alert("Passwords do not match");

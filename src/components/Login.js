@@ -38,7 +38,8 @@ const Login = () => {
           alert(response.data.message);
           history.push("/profile");
         }
-      });
+      })
+      .catch((err) => alert(err));
   };
 
   return (

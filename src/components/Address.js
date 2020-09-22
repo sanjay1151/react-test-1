@@ -15,6 +15,7 @@ const Address = () => {
   const logOut = () => {
     localStorage.removeItem("auth_key");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     history.push("/login");
   };
 

@@ -16,6 +16,7 @@ const ViewAddress = () => {
   const logOut = () => {
     localStorage.removeItem("auth_key");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     history.push("/login");
   };
 
@@ -51,6 +52,10 @@ const ViewAddress = () => {
               alert("You dont have any stored Address, add Address now");
               history.push("/addAddress");
             }
+          })
+          .catch((err) => {
+            alert(err + "\nRedirecting to Profile page");
+            history.push("/profile");
           });
       }
     };

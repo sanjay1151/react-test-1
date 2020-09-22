@@ -27,6 +27,7 @@ const AddAddress = () => {
   const logOut = () => {
     localStorage.removeItem("auth_key");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     history.push("/login");
   };
 
@@ -71,6 +72,10 @@ const AddAddress = () => {
         if (response.data.response_code === 200) {
           history.push("/address");
         }
+      })
+      .catch((err) => {
+        alert(err + "\nRedirecting to Profile page");
+        history.push("/profile");
       });
     console.log(newAddress);
   };

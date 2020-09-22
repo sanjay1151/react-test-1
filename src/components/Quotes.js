@@ -81,6 +81,7 @@ const Quotes = () => {
   const logOut = () => {
     localStorage.removeItem("auth_key");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     history.push("/login");
   };
 
@@ -106,13 +107,17 @@ const Quotes = () => {
             }
             const s = [];
             Object.entries(response.data).map((k) => {
-              return k[1].data.map((item) =>
-                item.quotes.suppliers.map((r) => s.push(r))
-              );
+              return k[1].data.map((item) => {
+                return item.quotes.suppliers.map((r) => s.push(r));
+              });
             });
             setSuppliers(s);
             setIsLoading(false);
             console.log(s);
+          })
+          .catch((err) => {
+            alert(err + "\nRedirecting to Profile page");
+            history.push("/profile");
           });
       }
     };
