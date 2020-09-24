@@ -92,6 +92,7 @@ const Login = () => {
                 id="Email"
                 type="email"
                 value={email}
+                // inputProps={{ maxLength: 5 }}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 variant="outlined"

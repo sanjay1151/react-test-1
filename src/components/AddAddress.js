@@ -266,6 +266,7 @@ const AddAddress = () => {
                   variant="outlined"
                   label="Zip"
                   style={{ minWidth: "350px" }}
+                  inputProps={{ max: 6 }}
                 />
               </div>
               <div
